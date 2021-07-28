@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_schoolbus_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SchoolBus">
-        <activity android:name=".Transport"></activity>
+        <activity android:name=".student"></activity>
+        <activity android:name=".Transport" />
         <activity android:name=".Register" />
         <activity android:name=".Home" />
         <activity android:name=".MainActivity">
