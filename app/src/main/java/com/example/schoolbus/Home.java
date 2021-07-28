@@ -12,6 +12,7 @@ public class Home extends AppCompatActivity {
     private Button btnTransport;
     private Button btnDriver;
     private Button btnStudent;
+    private Button btnPayment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class Home extends AppCompatActivity {
         btnTransport = (Button) findViewById(R.id.btnTransport);
         btnDriver = (Button) findViewById(R.id.btnDriver);
         btnStudent = (Button) findViewById(R.id.btnStudent);
+        btnPayment = (Button) findViewById(R.id.btnPayment);
 
         btnTransport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,13 @@ public class Home extends AppCompatActivity {
                 openstudent();
             }
         });
+
+        btnPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPayment();
+            }
+        });
     }
 
     public void openTransport(){
@@ -56,6 +65,11 @@ public class Home extends AppCompatActivity {
 
     public void openstudent(){
         Intent intent = new Intent(this, student.class);
+        startActivity(intent);
+    }
+
+    public void openPayment(){
+        Intent intent = new Intent(this, Payment.class);
         startActivity(intent);
     }
 }

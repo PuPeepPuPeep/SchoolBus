@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnStudent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="ดูข้อมูลคนขับ"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintEnd_toEndOf="@+id/btnPayment"
+        app:layout_constraintStart_toStartOf="@+id/btnPayment"
+        app:layout_constraintTop_toBottomOf="@+id/btnPayment" />
 </androidx.constraintlayout.widget.ConstraintLayout>
