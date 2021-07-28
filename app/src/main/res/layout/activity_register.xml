@@ -7,7 +7,7 @@
     tools:context=".Register">
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/edtFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
@@ -19,52 +19,52 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/edtLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintEnd_toEndOf="@+id/edtFirstName"
+        app:layout_constraintStart_toStartOf="@+id/edtFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/edtFirstName" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/edtTel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Tel"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName4"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/edtLastName"
+        app:layout_constraintStart_toStartOf="@+id/edtLastName"
+        app:layout_constraintTop_toBottomOf="@+id/edtLastName" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/edtUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName5"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintEnd_toEndOf="@+id/edtTel"
+        app:layout_constraintStart_toStartOf="@+id/edtTel"
+        app:layout_constraintTop_toBottomOf="@+id/edtTel" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName7"
+        android:id="@+id/edtPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName6"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edtUsername"
+        app:layout_constraintStart_toStartOf="@+id/edtUsername"
+        app:layout_constraintTop_toBottomOf="@+id/edtUsername" />
 
     <Button
         android:id="@+id/btnRegister"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Register"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName7"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName7"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
+        app:layout_constraintEnd_toEndOf="@+id/edtPassword"
+        app:layout_constraintStart_toStartOf="@+id/edtPassword"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>
