@@ -24,10 +24,10 @@ public class Transport extends FragmentActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transport);
+        //setContentView(R.layout.activity_transport);
 
-        //binding = ActivityTransportBinding.inflate(getLayoutInflater());
-        //setContentView(binding.getRoot());
+        binding = ActivityTransportBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
