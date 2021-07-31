@@ -6,53 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
-    <Button
-        android:id="@+id/btnTransport"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/studentRecView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="ประวัติการเดินทาง"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnStudent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="เพิ่มข้อมูลนักเรียน"
-        app:layout_constraintEnd_toEndOf="@+id/btnTransport"
-        app:layout_constraintStart_toStartOf="@+id/btnTransport"
-        app:layout_constraintTop_toBottomOf="@+id/btnTransport" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="แก้ใขข้อมูลนักเรียน"
-        app:layout_constraintEnd_toEndOf="@+id/btnStudent"
-        app:layout_constraintStart_toStartOf="@+id/btnStudent"
-        app:layout_constraintTop_toBottomOf="@+id/btnStudent" />
-
-    <Button
-        android:id="@+id/btnPayment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="ตรวจสอบการชำระเงิน"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-    <Button
-        android:id="@+id/btnDriver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="ดูข้อมูลคนขับ"
-        app:layout_constraintEnd_toEndOf="@+id/btnPayment"
-        app:layout_constraintStart_toStartOf="@+id/btnPayment"
-        app:layout_constraintTop_toBottomOf="@+id/btnPayment" />
 </androidx.constraintlayout.widget.ConstraintLayout>

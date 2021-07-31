@@ -2,6 +2,7 @@ package com.example.schoolbus;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,53 +10,34 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 public class Home extends AppCompatActivity {
 
-//    private Button btnTransport;
-//    private Button btnDriver;
-//    private Button btnStudent;
-//    private Button btnPayment;
+    private RecyclerView studentRecView;
+
+    ArrayAdapter studentArrayAdapter;
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-//        btnTransport = (Button) findViewById(R.id.btnTransport);
-//        btnDriver = (Button) findViewById(R.id.btnDriver);
-//        btnStudent = (Button) findViewById(R.id.btnStudent);
-//        btnPayment = (Button) findViewById(R.id.btnPayment);
-//
-//        btnTransport.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openTransport();
-//            }
-//        });
-//
-//        btnDriver.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openDriver();
-//            }
-//        });
-//
-//        btnStudent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openstudent();
-//            }
-//        });
-//
-//        btnPayment.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openPayment();
-//            }
-//        });
+        studentRecView = findViewById(R.id.studentRecView);
+
+        database = new Database(Home.this);
+
+//        ShowStudentOnRecView(database);
+
+
     }
+
+//    private void ShowStudentOnRecView(Database database) {
+//        studentArrayAdapter = new ArrayAdapter<StudentModel>(Home.this, R.layout.student_list_item, database.getStudent());
+//        studentRecView.setAdapter(studentArrayAdapter);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

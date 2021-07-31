@@ -8,13 +8,52 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class student extends AppCompatActivity {
+
+    private Button btnAddStu;
+    private EditText edtStuFirstname, edtStuLastname, edtStuSchool, edtStuAddress;
+
+    ArrayAdapter studentArrayAdapter;
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+
+        btnAddStu = (Button) findViewById(R.id.btnAddStu);
+        edtStuFirstname = findViewById(R.id.edtStuFirstname);
+        edtStuLastname = findViewById(R.id.edtStuLastname);
+        edtStuSchool = findViewById(R.id.edtStuSchool);
+        edtStuAddress = findViewById(R.id.edtStuAddress);
+
+        database = new Database(student.this);
+
+        btnAddStu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StudentModel studentModel;
+
+                try{
+                    studentModel = new StudentModel(-1, edtStuFirstname.getText().toString(), edtStuLastname.getText().toString(), "0000", edtStuAddress.getText().toString(), edtStuSchool.getText().toString(), 1234, "0000");
+                    Toast.makeText(student.this, studentModel.toString(), Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e){
+                    Toast.makeText(student.this, "Error", Toast.LENGTH_SHORT).show();
+                    studentModel = new StudentModel(-1,"error", "error", "error", "error", "error", 0, "error");
+                }
+
+                Database database = new Database(student.this);
+
+                boolean success = database.addOne(studentModel);
+            }
+        });
     }
 
     @Override
