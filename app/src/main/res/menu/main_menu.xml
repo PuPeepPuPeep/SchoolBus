@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:title="Menu"
-        android:id="@+id/menu"
-        app:showAsAction="always"/>
+        android:title="Home"
+        android:id="@+id/menu_home"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Transport"
+        android:id="@+id/menu_transport"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Student"
+        android:id="@+id/menu_student"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Payment"
+        android:id="@+id/menu_payment"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Driver"
+        android:id="@+id/menu_driver"
+        app:showAsAction="never"/>
+
 </menu>
