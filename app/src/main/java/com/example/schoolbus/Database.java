@@ -30,32 +30,26 @@ public class Database extends SQLiteOpenHelper {
     public static final String COLUMN_STU_SCHOOL = "STU_SCHOOL";
     public static final String COLUMN_STU_CREATED = "STU_CREATED";
 
-//    public static final String STUDENT_TABLE = "STUDENT_TABLE";
-//    public static final String STU_ID = "STU_ID";
-//    public static final String STU_FIRSTNAME = "STU_FIRSTNAME";
-//    public static final String STU_LASTNAME = "STU_LASTNAME";
-//    public static final String STU_IMAGE = "STU_IMAGE";
-//    public static final String STU_ADDRESS = "STU_ADDRESS";
-//    public static final String STU_SCHOOL = "STU_SCHOOL";
-//    public static final String USER_ID = "USER_ID";
-//    public static final String STU_CREATED = "STU_CREATED";
+    private static final String createTableUser = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USER_FIRSTNAME + " TEXT, " + COLUMN_USER_LASTNAME + " TEXT, " + COLUMN_USER_USERNAME + " TEXT, " + COLUMN_USER_PASSWORD + " TEXT, " + COLUMN_USER_TEL + " TEXT, " + COLUMN_USER_CREATED + " TIMESTAMP)";
+    private static final String createTableStudent = "CREATE TABLE " + STUDENT_TABLE + " (" + COLUMN_STU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_STU_FIRSTNAME + " TEXT, " + COLUMN_STU_LASTNAME + " TEXT, " + COLUMN_STU_IMAGE + " TEXT, " + COLUMN_STU_ADDRESS + " TEXT, " + COLUMN_STU_SCHOOL + " TEXT, " + COLUMN_USER_ID + " INTEGER, " + COLUMN_STU_CREATED + " TIMESTAMP)";
 
     public Database(@Nullable Context context) {
-        super(context, "user.db", null, 1);
+        super(context, "schoolbus.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String createTableStatement = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USER_FIRSTNAME + " TEXT, " + COLUMN_USER_LASTNAME + " TEXT, " + COLUMN_USER_USERNAME + " TEXT, " + COLUMN_USER_PASSWORD + " TEXT, " + COLUMN_USER_TEL + " TEXT, " + COLUMN_USER_CREATED + " TIMESTAMP)";
-        String createTableStudent = "CREATE TABLE " + STUDENT_TABLE + " (" + COLUMN_STU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_STU_FIRSTNAME + " TEXT, " + COLUMN_STU_LASTNAME + " TEXT, " + COLUMN_STU_IMAGE + " TEXT, " + COLUMN_STU_ADDRESS + " TEXT, " + COLUMN_STU_SCHOOL + " TEXT, " + COLUMN_USER_ID + " INTEGER, " + COLUMN_STU_CREATED + " TIMESTAMP)";
-
-        db.execSQL(createTableStatement);
+        db.execSQL(createTableUser);
         db.execSQL(createTableStudent);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        db.execSQL("DROP TABLE IF EXISTS '" + USER_TABLE + "'");
+        db.execSQL("DROP TABLE IF EXISTS '" + STUDENT_TABLE + "'");
+        onCreate(db);
 
     }
 
