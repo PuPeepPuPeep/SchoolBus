@@ -5,18 +5,18 @@ public class UserModel {
     private int user_id;
     private String user_firstname;
     private String user_lastname;
+    private String user_tel;
     private String user_username;
     private String user_password;
-    private String user_tel;
     private String user_created;
 
-    public UserModel(int user_id, String user_firstname, String user_lastname, String user_username, String user_password, String user_tel, String user_created){
+    public UserModel(int user_id, String user_firstname, String user_lastname, String user_tel, String user_username, String user_password, String user_created){
         this.user_id = user_id;
         this.user_firstname = user_firstname;
         this.user_lastname = user_lastname;
+        this.user_tel = user_tel;
         this.user_username = user_username;
         this.user_password = user_password;
-        this.user_tel = user_tel;
         this.user_created = user_created;
     }
 
@@ -29,9 +29,9 @@ public class UserModel {
                 "user_id=" + user_id +
                 ", user_firstname='" + user_firstname + '\'' +
                 ", user_lastname='" + user_lastname + '\'' +
+                ", user_tel='" + user_tel + '\'' +
                 ", user_username='" + user_username + '\'' +
                 ", user_password='" + user_password + '\'' +
-                ", user_tel='" + user_tel + '\'' +
                 ", user_created='" + user_created + '\'' +
                 '}';
     }
@@ -60,6 +60,14 @@ public class UserModel {
         this.user_lastname = user_lastname;
     }
 
+    public String getUser_tel() {
+        return user_tel;
+    }
+
+    public void setUser_tel(String user_tel) {
+        this.user_tel = user_tel;
+    }
+
     public String getUser_username() {
         return user_username;
     }
@@ -74,14 +82,6 @@ public class UserModel {
 
     public void setUser_password(String user_password) {
         this.user_password = user_password;
-    }
-
-    public String getUser_tel() {
-        return user_tel;
-    }
-
-    public void setUser_tel(String user_tel) {
-        this.user_tel = user_tel;
     }
 
     public String getUser_created() {

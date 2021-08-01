@@ -16,9 +16,9 @@ public class Database extends SQLiteOpenHelper {
     public static final String COLUMN_USER_ID = "USER_ID";
     public static final String COLUMN_USER_FIRSTNAME = "USER_FIRSTNAME";
     public static final String COLUMN_USER_LASTNAME = "USER_LASTNAME";
+    public static final String COLUMN_USER_TEL = "USER_TEL";
     public static final String COLUMN_USER_USERNAME = "USER_USERNAME";
     public static final String COLUMN_USER_PASSWORD = "USER_PASSWORD";
-    public static final String COLUMN_USER_TEL = "USER_TEL";
     public static final String COLUMN_USER_CREATED = "USER_CREATED";
 
     public static final String STUDENT_TABLE = "STUDENT_TABLE";
@@ -30,7 +30,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String COLUMN_STU_SCHOOL = "STU_SCHOOL";
     public static final String COLUMN_STU_CREATED = "STU_CREATED";
 
-    private static final String createTableUser = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USER_FIRSTNAME + " TEXT, " + COLUMN_USER_LASTNAME + " TEXT, " + COLUMN_USER_USERNAME + " TEXT, " + COLUMN_USER_PASSWORD + " TEXT, " + COLUMN_USER_TEL + " TEXT, " + COLUMN_USER_CREATED + " TIMESTAMP)";
+    private static final String createTableUser = "CREATE TABLE " + USER_TABLE + "(" + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USER_FIRSTNAME + " TEXT, " + COLUMN_USER_LASTNAME + " TEXT, " + COLUMN_USER_TEL + " TEXT, " + COLUMN_USER_USERNAME + " TEXT, " + COLUMN_USER_PASSWORD + " TEXT, " + COLUMN_USER_CREATED + " TIMESTAMP)";
     private static final String createTableStudent = "CREATE TABLE " + STUDENT_TABLE + " (" + COLUMN_STU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_STU_FIRSTNAME + " TEXT, " + COLUMN_STU_LASTNAME + " TEXT, " + COLUMN_STU_IMAGE + " TEXT, " + COLUMN_STU_ADDRESS + " TEXT, " + COLUMN_STU_SCHOOL + " TEXT, " + COLUMN_USER_ID + " INTEGER, " + COLUMN_STU_CREATED + " TIMESTAMP)";
 
     public Database(@Nullable Context context) {
@@ -60,9 +60,9 @@ public class Database extends SQLiteOpenHelper {
 
         cv.put(COLUMN_USER_FIRSTNAME, userModel.getUser_firstname());
         cv.put(COLUMN_USER_LASTNAME, userModel.getUser_lastname());
+        cv.put(COLUMN_USER_TEL, userModel.getUser_tel());
         cv.put(COLUMN_USER_USERNAME, userModel.getUser_username());
         cv.put(COLUMN_USER_PASSWORD, userModel.getUser_password());
-        cv.put(COLUMN_USER_TEL, userModel.getUser_tel());
         cv.put(COLUMN_USER_CREATED, userModel.getUser_created());
 
         long insert = db.insert(USER_TABLE, null, cv);
@@ -93,6 +93,38 @@ public class Database extends SQLiteOpenHelper {
         else {
             return true;
         }
+    }
+
+    public List<UserModel> getUser(){
+        List<UserModel> returnList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + USER_TABLE;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()){
+            do {
+                int userId = cursor.getInt(0);
+                String userFirstname = cursor.getString(1);
+                String userLastname = cursor.getString(2);
+                String userUsername = cursor.getString(3);
+                String userPassword = cursor.getString(4);
+                String userTel = cursor.getString(5);
+                String userCreated = cursor.getString(6);
+
+                UserModel newUser = new UserModel(userId, userFirstname, userLastname, userUsername, userPassword, userTel, userCreated);
+                returnList.add(newUser);
+            }while (cursor.moveToNext());
+        }
+        else {
+
+        }
+
+        cursor.close();
+        db.close();
+        return returnList;
     }
 
     public List<StudentModel> getStudent(){
@@ -127,5 +159,14 @@ public class Database extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnList;
+    }
+
+    public Boolean checkUsernamePassword (String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM USER_TABLE WHERE USER_USERNAME = ? AND USER_PASSWORD = ?", new String[] {username, password});
+        if (cursor.getCount()>0)
+            return true;
+        else
+            return false;
     }
 }
