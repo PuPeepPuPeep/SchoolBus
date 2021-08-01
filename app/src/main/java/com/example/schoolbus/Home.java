@@ -12,10 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 public class Home extends AppCompatActivity {
 
-    private RecyclerView studentRecView;
+//    private RecyclerView studentRecView;
+    private ListView studentListView;
 
     ArrayAdapter studentArrayAdapter;
     Database database;
@@ -25,19 +27,21 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        studentRecView = findViewById(R.id.studentRecView);
+//        studentRecView = findViewById(R.id.studentRecView);
+        studentListView = findViewById(R.id.studentListView);
 
         database = new Database(Home.this);
 
-//        ShowStudentOnRecView(database);
+        ShowStudentOnListView(database);
 
 
     }
 
-//    private void ShowStudentOnRecView(Database database) {
-//        studentArrayAdapter = new ArrayAdapter<StudentModel>(Home.this, R.layout.student_list_item, database.getStudent());
+    private void ShowStudentOnListView(Database database) {
+        studentArrayAdapter = new ArrayAdapter<StudentModel>(Home.this, android.R.layout.simple_list_item_1, database.getStudent());
 //        studentRecView.setAdapter(studentArrayAdapter);
-//    }
+        studentListView.setAdapter(studentArrayAdapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

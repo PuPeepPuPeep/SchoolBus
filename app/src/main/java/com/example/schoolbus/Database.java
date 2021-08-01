@@ -96,6 +96,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public List<StudentModel> getStudent(){
+
         List<StudentModel> returnList = new ArrayList<>();
 
         String queryString = "SELECT * FROM " + STUDENT_TABLE;
