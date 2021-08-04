@@ -97,8 +97,8 @@ public class Transport extends FragmentActivity implements OnMapReadyCallback {
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        LatLng sydney = new LatLng(15.603315, 102.421388);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker My Home Bua Yai"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
