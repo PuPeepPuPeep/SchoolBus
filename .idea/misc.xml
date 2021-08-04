@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android Studio/SchoolBus/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Studio/SchoolBus/app/src/main/res/layout/activity_student.xml" value="0.25416666666666665" />
         <entry key="..\:/Android Studio/SchoolBus/app/src/main/res/layout/student_list_item.xml" value="0.264" />
       </map>
     </option>
