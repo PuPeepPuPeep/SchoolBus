@@ -2,6 +2,8 @@ package com.example.schoolbus;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -14,9 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class Home extends AppCompatActivity {
 
-//    private RecyclerView studentRecView;
+    private RecyclerView studentRecView;
     private ListView studentListView;
 
     ArrayAdapter studentArrayAdapter;
@@ -27,21 +31,29 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-//        studentRecView = findViewById(R.id.studentRecView);
-        studentListView = findViewById(R.id.studentListView);
+        studentRecView = findViewById(R.id.studentRecView);
+//        studentListView = findViewById(R.id.studentListView);
 
         database = new Database(Home.this);
 
-        ShowStudentOnListView(database);
+        ArrayList<StudentRecModel> studentRecModels = new ArrayList<StudentRecModel>(database.getStudentRec());
+//        studentRecModels.add(new StudentRecModel("JJ","JJ", "https://images.pexels.com/photos/1804035/pexels-photo-1804035.jpeg"));
+
+        StudentRecViewAdapter adapter = new StudentRecViewAdapter(this);
+        adapter.setStudentRecModels(studentRecModels);
+
+        studentRecView.setAdapter(adapter);
+        studentRecView.setLayoutManager(new LinearLayoutManager(this));
+//        ShowStudentOnListView(database);
 
 
     }
 
-    private void ShowStudentOnListView(Database database) {
-        studentArrayAdapter = new ArrayAdapter<StudentModel>(Home.this, android.R.layout.simple_list_item_1, database.getStudent());
+//    private void ShowStudentOnListView(Database database) {
+//        studentArrayAdapter = new ArrayAdapter<StudentModel>(Home.this, android.R.layout.simple_list_item_1, database.getStudent());
 //        studentRecView.setAdapter(studentArrayAdapter);
-        studentListView.setAdapter(studentArrayAdapter);
-    }
+//        studentListView.setAdapter(studentArrayAdapter);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

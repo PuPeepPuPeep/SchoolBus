@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class StudentRecViewAdapter extends RecyclerView.Adapter<StudentRecViewAdapter.ViewHolder> {
 
-    private ArrayList<StudentModel> studentModels = new ArrayList<>();
+    private ArrayList<StudentRecModel> studentRecModels = new ArrayList<>();
 
     private Context context;
 
@@ -39,21 +39,38 @@ public class StudentRecViewAdapter extends RecyclerView.Adapter<StudentRecViewAd
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        holder.txtName.setText(studentModels.get(position).getStu_firstname());
+        holder.txtName.setText(studentRecModels.get(position).getFirstName());
+        holder.txtLastname.setText(studentRecModels.get(position).getLastName());
+
+        Glide.with(context)
+                .asBitmap()
+                .load(studentRecModels.get(position).getImgUrl())
+                .into(holder.image);
     }
 
     @Override
     public int getItemCount() {
-        return studentModels.size();
+        return studentRecModels.size();
+    }
+
+    public void setStudentRecModels(ArrayList<StudentRecModel> studentRecModels){
+        this.studentRecModels = studentRecModels;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView txtName;
+        private CardView parent;
+        private TextView txtName, txtLastname;
+        private ImageView image;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
+            parent = itemView.findViewById(R.id.parent);
             txtName = itemView.findViewById(R.id.txtName);
+            txtLastname = itemView.findViewById(R.id.txtLastname);
+
+            image = itemView.findViewById(R.id.image);
         }
     }
 }

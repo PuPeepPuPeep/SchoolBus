@@ -232,6 +232,37 @@ public class Database extends SQLiteOpenHelper {
         return returnList;
     }
 
+    public List<StudentRecModel> getStudentRec(){
+        List<StudentRecModel> returnList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + STUDENT_TABLE;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()){
+            do {
+                String stuFirstname = cursor.getString(1);
+                String stuLastname = cursor.getString(2);
+                String image = "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png";
+
+                StudentRecModel newStudentRecModel = new StudentRecModel(stuFirstname, stuLastname, image);
+                returnList.add(newStudentRecModel);
+
+            }while (cursor.moveToNext());
+
+        }
+        else{
+
+        }
+        cursor.close();
+        db.close();
+        return returnList;
+
+    }
+
+
     public Boolean checkUsernamePassword (String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM USER_TABLE WHERE USER_USERNAME = ? AND USER_PASSWORD = ?", new String[] {username, password});
