@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnToRegister;
     private Database database;
 
-    //SessionManager sessionManager;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         btnToRegister = (Button) findViewById(R.id.btnToRegister);
         database = new Database(this);
 
-        //sessionManager = new SessionManager(getApplicationContext());
+        sessionManager = new SessionManager(getApplicationContext());
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     Boolean checkUsernamePassword = database.checkUsernamePassword(Username, Password);
                     if (checkUsernamePassword==true){
+
+                        sessionManager.setLogin(true);
+                        sessionManager.setUsername(Username);
+
                         Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),Home.class);
                         startActivity(intent);
@@ -65,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
                 openRegister();
             }
         });
+
+        if (sessionManager.getLogin()){
+            startActivity(new Intent(getApplicationContext(),
+                    Home.class));
+        }
     }
 
 //    public void openLogin(){

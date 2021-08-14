@@ -27,6 +27,8 @@ public class Home extends AppCompatActivity {
     ArrayAdapter studentArrayAdapter;
     Database database;
 
+    SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class Home extends AppCompatActivity {
         studentRecView.setLayoutManager(new LinearLayoutManager(this));
 //        ShowStudentOnListView(database);
 
+        sessionManager = new SessionManager(getApplicationContext());
 
     }
 
@@ -81,6 +84,9 @@ public class Home extends AppCompatActivity {
             case R.id.menu_driver:
                 openDriver();
                 break;
+            case R.id.menu_logout:
+                logout();
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -109,6 +115,13 @@ public class Home extends AppCompatActivity {
 
     public void openPayment(){
         Intent intent = new Intent(this, Payment.class);
+        startActivity(intent);
+    }
+
+    public void logout(){
+        sessionManager.setLogin(false);
+        sessionManager.setUsername("");
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }
