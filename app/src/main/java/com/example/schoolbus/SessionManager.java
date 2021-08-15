@@ -31,4 +31,13 @@ public class SessionManager {
     public String getUsername(){
         return sharedPreferences.getString("KEY_USERNAME", "");
     }
+
+    public void setUserId(int userId){
+        editor.putInt("KEY_USERID", userId);
+        editor.commit();
+    }
+
+    public int getUserId(){
+        return sharedPreferences.getInt("KEY_USERID", 0);
+    }
 }

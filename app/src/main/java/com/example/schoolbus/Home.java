@@ -121,6 +121,7 @@ public class Home extends AppCompatActivity {
     public void logout(){
         sessionManager.setLogin(false);
         sessionManager.setUsername("");
+        sessionManager.setUserId(0);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

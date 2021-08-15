@@ -12,12 +12,16 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class student extends AppCompatActivity {
 
+    private TextView txtUserId;
     private Button btnAddStu;
     private EditText edtStuFirstname, edtStuLastname, edtStuSchool, edtStuAddress;
+
+    SessionManager sessionManager;
 
     ArrayAdapter studentArrayAdapter;
     Database database;
@@ -26,6 +30,13 @@ public class student extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+
+        txtUserId = findViewById(R.id.txtUserId);
+
+        sessionManager = new SessionManager(getApplicationContext());
+
+        int userId = sessionManager.getUserId();
+        txtUserId.setText(Integer.toString(userId));
 
         btnAddStu = (Button) findViewById(R.id.btnAddStu);
         edtStuFirstname = findViewById(R.id.edtStuFirstname);
@@ -41,7 +52,7 @@ public class student extends AppCompatActivity {
                 StudentModel studentModel;
 
                 try{
-                    studentModel = new StudentModel(-1, edtStuFirstname.getText().toString(), edtStuLastname.getText().toString(), "0000", edtStuAddress.getText().toString(), edtStuSchool.getText().toString(), 1234, "0000");
+                    studentModel = new StudentModel(-1, edtStuFirstname.getText().toString(), edtStuLastname.getText().toString(), "0000", edtStuAddress.getText().toString(), edtStuSchool.getText().toString(), userId, "0000");
                     Toast.makeText(student.this, studentModel.toString(), Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){

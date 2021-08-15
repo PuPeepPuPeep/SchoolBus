@@ -122,6 +122,7 @@ public class Database extends SQLiteOpenHelper {
         cv.put(COLUMN_STU_IMAGE, studentModel.getStu_image());
         cv.put(COLUMN_STU_ADDRESS, studentModel.getStu_address());
         cv.put(COLUMN_STU_SCHOOL, studentModel.getStu_school());
+        cv.put(COLUMN_USER_ID, studentModel.getUser_id());
         cv.put(COLUMN_STU_CREATED, studentModel.getStu_created());
 
         long insert = db.insert(STUDENT_TABLE, null, cv);
@@ -270,5 +271,22 @@ public class Database extends SQLiteOpenHelper {
             return true;
         else
             return false;
+    }
+
+    public int checkUserId (String username){
+        int id;
+//        String queryString = "SELECT * FROM " + USER_TABLE + " WHERE USER_USERNAME = ?";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM USER_TABLE WHERE USER_USERNAME = '"+username+"' ;",null);
+        if (cursor.moveToFirst()) {
+            id = cursor.getInt(0);
+        }
+        else {
+            id = 0;
+        }
+//        int userId = cursor.getInt(0);
+        cursor.close();
+        db.close();
+        return id;
     }
 }

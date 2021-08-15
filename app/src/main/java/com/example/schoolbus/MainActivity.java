@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 String Username = edtUsername.getText().toString();
                 String Password = edtPassword.getText().toString();
 
+
                 if (Password.equals("")){
                     edtUsername.setError("Please enter Username and Password");
                     edtPassword.setError("Please enter Username and Password");
@@ -50,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
                         sessionManager.setLogin(true);
                         sessionManager.setUsername(Username);
 
-                        Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                        int UserId = database.checkUserId(Username);
+
+                        sessionManager.setUserId(UserId);
+
+                        Toast.makeText(MainActivity.this, Integer.toString(sessionManager.getUserId()), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),Home.class);
                         startActivity(intent);
                     }
