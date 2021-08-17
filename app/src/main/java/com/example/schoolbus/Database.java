@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Database extends SQLiteOpenHelper {
+
+    SessionManager sessionManager;
+
     public static final String ADMIN_TABLE = "ADMIN_TABLE";
     public static final String COLUMN_ADMIN_ID = "ADMIN_ID";
     public static final String COLUMN_ADMIN_FIRSTNAME = "ADMIN_FIRSTNAME";
@@ -48,6 +51,8 @@ public class Database extends SQLiteOpenHelper {
 
     public Database(@Nullable Context context) {
         super(context, "schoolbus.db", null, 1);
+
+        sessionManager = new SessionManager(context.getApplicationContext());
     }
 
     @Override
@@ -236,7 +241,7 @@ public class Database extends SQLiteOpenHelper {
     public List<StudentRecModel> getStudentRec(){
         List<StudentRecModel> returnList = new ArrayList<>();
 
-        String queryString = "SELECT * FROM " + STUDENT_TABLE;
+        String queryString = "SELECT * FROM " + STUDENT_TABLE + " WHERE USER_ID = " + sessionManager.getUserId();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
