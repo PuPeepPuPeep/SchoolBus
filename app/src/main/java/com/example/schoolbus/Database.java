@@ -263,6 +263,14 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
+    public Boolean checkAdmin (String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM ADMIN_TABLE WHERE ADMIN_USERNAME = ? AND ADMIN_PASSWORD = ?", new String[] {username, password});
+        if (cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
 
     public Boolean checkUsernamePassword (String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();

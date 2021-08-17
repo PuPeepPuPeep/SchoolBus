@@ -45,22 +45,36 @@ public class MainActivity extends AppCompatActivity {
                     edtPassword.setError("Please enter Username and Password");
                 }
                 else {
-                    Boolean checkUsernamePassword = database.checkUsernamePassword(Username, Password);
-                    if (checkUsernamePassword==true){
+
+                    Boolean checkAdmin = database.checkAdmin(Username, Password);
+                    if (checkAdmin==true){
 
                         sessionManager.setLogin(true);
                         sessionManager.setUsername(Username);
 
-                        int UserId = database.checkUserId(Username);
-
-                        sessionManager.setUserId(UserId);
-
-                        Toast.makeText(MainActivity.this, Integer.toString(sessionManager.getUserId()), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Admin", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),Home.class);
                         startActivity(intent);
                     }
-                    else {
-                        Toast.makeText(MainActivity.this, "Invalid", Toast.LENGTH_SHORT).show();
+
+                    else{
+                        Boolean checkUsernamePassword = database.checkUsernamePassword(Username, Password);
+                        if (checkUsernamePassword==true){
+
+                            sessionManager.setLogin(true);
+                            sessionManager.setUsername(Username);
+
+                            int UserId = database.checkUserId(Username);
+
+                            sessionManager.setUserId(UserId);
+
+                            Toast.makeText(MainActivity.this, Integer.toString(sessionManager.getUserId()), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(),Home.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this, "Invalid", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
 
