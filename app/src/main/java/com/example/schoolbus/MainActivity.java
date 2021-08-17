@@ -49,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
                     Boolean checkAdmin = database.checkAdmin(Username, Password);
                     if (checkAdmin==true){
 
-                        sessionManager.setLogin(true);
+                        sessionManager.setLogin(1);
                         sessionManager.setUsername(Username);
 
                         Toast.makeText(MainActivity.this, "Admin", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(),Home.class);
+                        Intent intent = new Intent(getApplicationContext(),AdminHome.class);
                         startActivity(intent);
                     }
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         Boolean checkUsernamePassword = database.checkUsernamePassword(Username, Password);
                         if (checkUsernamePassword==true){
 
-                            sessionManager.setLogin(true);
+                            sessionManager.setLogin(2);
                             sessionManager.setUsername(Username);
 
                             int UserId = database.checkUserId(Username);
@@ -89,7 +89,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (sessionManager.getLogin()){
+        if (sessionManager.getLogin() == 1){
+            startActivity(new Intent(getApplicationContext(),
+                    AdminHome.class));
+        }
+        else if (sessionManager.getLogin() == 2){
             startActivity(new Intent(getApplicationContext(),
                     Home.class));
         }

@@ -2,7 +2,6 @@ package com.example.schoolbus;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,18 +10,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Home extends AppCompatActivity {
+public class AdminHome extends AppCompatActivity {
 
-    private RecyclerView studentRecView;
-    private ListView studentListView;
+    private RecyclerView studentRecView2;
 
     ArrayAdapter studentArrayAdapter;
     Database database;
@@ -32,32 +27,24 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_admin_home);
 
-        studentRecView = findViewById(R.id.studentRecView);
-//        studentListView = findViewById(R.id.studentListView);
+        studentRecView2 = findViewById(R.id.studentRecView2);
 
-        database = new Database(Home.this);
+        database = new Database(AdminHome.this);
 
-        ArrayList<StudentRecModel> studentRecModels = new ArrayList<StudentRecModel>(database.getStudentRec());
-//        studentRecModels.add(new StudentRecModel("JJ","JJ", "https://images.pexels.com/photos/1804035/pexels-photo-1804035.jpeg"));
+        ArrayList<StudentRecModel> studentRecModels = new ArrayList<StudentRecModel>(database.getAllStudentRec());
 
         StudentRecViewAdapter adapter = new StudentRecViewAdapter(this);
         adapter.setStudentRecModels(studentRecModels);
 
-        studentRecView.setAdapter(adapter);
-        studentRecView.setLayoutManager(new LinearLayoutManager(this));
-//        ShowStudentOnListView(database);
+        studentRecView2.setAdapter(adapter);
+        studentRecView2.setLayoutManager(new LinearLayoutManager(this));
 
         sessionManager = new SessionManager(getApplicationContext());
 
-    }
 
-//    private void ShowStudentOnListView(Database database) {
-//        studentArrayAdapter = new ArrayAdapter<StudentModel>(Home.this, android.R.layout.simple_list_item_1, database.getStudent());
-//        studentRecView.setAdapter(studentArrayAdapter);
-//        studentListView.setAdapter(studentArrayAdapter);
-//    }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

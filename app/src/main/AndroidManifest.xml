@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.schoolbus">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -12,19 +12,21 @@
         android:roundIcon="@mipmap/ic_schoolbus_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SchoolBus">
+        <activity
+            android:name=".AdminHome"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
 
-        <activity android:name=".Payment"></activity>
+        <activity android:name=".Payment" />
         <activity android:name=".Driver" />
         <activity android:name=".student" />
         <activity android:name=".Transport" />
         <activity android:name=".Register" />
         <activity android:name=".Home" />
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -14,13 +14,13 @@ public class SessionManager {
         editor.apply();
     }
 
-    public void setLogin(boolean login){
-        editor.putBoolean("KEY_LOGIN", login);
+    public void setLogin(int login){
+        editor.putInt("KEY_LOGIN", login);
         editor.commit();
     }
 
-    public boolean getLogin(){
-        return sharedPreferences.getBoolean("KEY_LOGIN", false);
+    public int getLogin(){
+        return sharedPreferences.getInt("KEY_LOGIN", 0);
     }
 
     public void setUsername(String username){
