@@ -92,6 +92,9 @@ public class student extends AppCompatActivity {
             case R.id.menu_driver:
                 openDriver();
                 break;
+            case R.id.menu_logout:
+                logout();
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -120,6 +123,14 @@ public class student extends AppCompatActivity {
 
     public void openPayment(){
         Intent intent = new Intent(this, Payment.class);
+        startActivity(intent);
+    }
+
+    public void logout(){
+        sessionManager.setLogin(0);
+        sessionManager.setUsername("");
+        sessionManager.setUserId(0);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

@@ -11,10 +11,14 @@ import android.view.MenuItem;
 
 public class Driver extends AppCompatActivity {
 
+    SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver);
+
+        sessionManager = new SessionManager(getApplicationContext());
     }
 
     @Override
@@ -41,6 +45,9 @@ public class Driver extends AppCompatActivity {
                 break;
             case R.id.menu_driver:
                 openDriver();
+                break;
+            case R.id.menu_logout:
+                logout();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -70,6 +77,14 @@ public class Driver extends AppCompatActivity {
 
     public void openPayment(){
         Intent intent = new Intent(this, Payment.class);
+        startActivity(intent);
+    }
+
+    public void logout(){
+        sessionManager.setLogin(0);
+        sessionManager.setUsername("");
+        sessionManager.setUserId(0);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }
