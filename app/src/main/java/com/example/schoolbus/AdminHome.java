@@ -81,7 +81,7 @@ public class AdminHome extends AppCompatActivity {
     }
 
     public void openHome(){
-        Intent intent = new Intent(this,Home.class);
+        Intent intent = new Intent(this,AdminHome.class);
         startActivity(intent);
     }
 
