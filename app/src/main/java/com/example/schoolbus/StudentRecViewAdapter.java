@@ -41,6 +41,7 @@ public class StudentRecViewAdapter extends RecyclerView.Adapter<StudentRecViewAd
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         holder.txtName.setText(studentRecModels.get(position).getFirstName());
         holder.txtLastname.setText(studentRecModels.get(position).getLastName());
+        holder.txtCheckinStatus.setText(studentRecModels.get(position).getCheckinStatus());
 
         Glide.with(context)
                 .asBitmap()
@@ -61,7 +62,7 @@ public class StudentRecViewAdapter extends RecyclerView.Adapter<StudentRecViewAd
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CardView parent;
-        private TextView txtName, txtLastname;
+        private TextView txtName, txtLastname, txtCheckinStatus;
         private ImageView image;
 
         public ViewHolder(@NonNull View itemView){
@@ -69,6 +70,7 @@ public class StudentRecViewAdapter extends RecyclerView.Adapter<StudentRecViewAd
             parent = itemView.findViewById(R.id.parent);
             txtName = itemView.findViewById(R.id.txtName);
             txtLastname = itemView.findViewById(R.id.txtLastname);
+            txtCheckinStatus = itemView.findViewById(R.id.txtCheckinStatus);
 
             image = itemView.findViewById(R.id.image);
         }
