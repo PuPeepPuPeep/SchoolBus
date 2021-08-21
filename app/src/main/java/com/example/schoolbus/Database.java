@@ -145,6 +145,24 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
+    public boolean addOne(CheckinModel checkinModel){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_ADMIN_ID, checkinModel.getAdmin_id());
+        cv.put(COLUMN_STU_ID, checkinModel.getStu_id());
+        cv.put(COLUMN_CHECKIN_STATUS, checkinModel.getCheckin_status());
+
+        long insert = db.insert(CHECKIN_TABLE, null, cv);
+        if (insert == -1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     public List<AdminModel> getAdmin(){
         List<AdminModel> returnList = new ArrayList<>();
 
@@ -278,7 +296,7 @@ public class Database extends SQLiteOpenHelper {
     public List<StudentRecModel> getAllStudentRec(){
         List<StudentRecModel> returnList = new ArrayList<>();
 
-        String queryString = "SELECT * FROM " + STUDENT_TABLE;
+        String queryString = "SELECT s.STU_ID, s.STU_FIRSTNAME, s.STU_LASTNAME, c.STU_ID, c.CHECKIN_STATUS FROM STUDENT_TABLE AS s, CHECKIN_TABLE AS c WHERE s.STU_ID = c.STU_ID";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -286,10 +304,10 @@ public class Database extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()){
             do {
-                String stuFirstname = cursor.getString(1);
-                String stuLastname = cursor.getString(2);
+                String stuFirstname = cursor.getString(cursor.getColumnIndex("STU_FIRSTNAME"));
+                String stuLastname = cursor.getString(cursor.getColumnIndex("STU_LASTNAME"));
                 String image = "https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png";
-                String checkinStatus = "Not in car";
+                String checkinStatus = cursor.getString(cursor.getColumnIndex("CHECKIN_STATUS"));
 
                 StudentRecModel newStudentRecModel = new StudentRecModel(stuFirstname, stuLastname, image, checkinStatus);
                 returnList.add(newStudentRecModel);
